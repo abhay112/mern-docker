@@ -4,7 +4,10 @@ const path = require('path');
 // Function to build the tree structure recursively, excluding 'node_modules'
 function getTreeStructure(dirPath) {
   // Skip 'node_modules' directory
-  if (path.basename(dirPath) === 'node_modules' || path.basename(dirPath) === '.next') {
+  const excluded = ['node_modules', '.next', '.git', 'dist', 'build', 'logs', 'tmp'];
+
+  // Skip if the current directory or file name is in the excluded list
+  if (excluded.includes(path.basename(dirPath))) {
     return null;
   }
 

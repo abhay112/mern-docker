@@ -1,40 +1,71 @@
-# A simple MERN stack application 
+# 🧩 Full-Stack CRUD Assignment with Docker + Kubernetes
 
-### Create a network for the docker containers
+This is a full-stack CRUD application with the following tech stack:
 
-`docker network create demo`
+- **Frontend**: Next.js + TypeScript + Tailwind CSS
+- **Backend**: Express.js + TypeScript + MongoDB
+- **Containerization**: Docker
+- **Orchestration**: Kubernetes (k8s)
 
-### Build the client 
+---
 
-```sh
-cd mern/frontend
-docker build -t mern-frontend .
-```
+## 📁 Project Structure
 
-### Run the client
 
-`docker run --name=frontend --network=demo -d -p 5173:5173 mern-frontend`
+---
 
-### Verify the client is running
+## 🚀 Getting Started (For Beginners)
 
-Open your browser and type `http://localhost:5173`
+If you don't have Docker or Kubernetes setup — follow the steps below.
 
-### Run the mongodb container
+---
 
-`docker run --network=demo --name mongodb -d -p 27017:27017 -v ~/opt/data:/data/db mongodb:latest`
+## 🔧 Prerequisites
 
-### Build the server
+Install the following:
 
-```sh
-cd mern/backend
-docker build -t mern-backend .
-```
+### 1. Docker
+- Install: [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
 
-### Run the server
 
-`docker run --name=backend --network=demo -d -p 5050:5050 mern-backend`
+### 2. Minikube (Kubernetes locally)
+- Install: [https://minikube.sigs.k8s.io/docs/start/](https://minikube.sigs.k8s.io/docs/start/)
+- OR use the `minikube-linux-amd64` binary (already included in project)
 
-## Using Docker Compose
 
-`docker compose up -d`
+### 3. Kubectl
+- Install: [https://kubernetes.io/docs/tasks/tools/](https://kubernetes.io/docs/tasks/tools/)
+
+---
+
+## 🐳 Option 1: Run Using Docker Compose (Without Kubernetes)
+
+
+Step 1: Start Minikube
+minikube start
+
+#If needed, restart cleanly:
+minikube stop
+minikube delete
+minikube start
+
+
+#run this before running minikube
+#Step 2: Enable Docker to use Minikube’s Docker daemon
+eval $(minikube docker-env)
+
+#Step 3: Build Docker Images for Kubernetes
+docker build -t frontend:local ./app/frontend
+docker build -t backend:local ./app/backend
+
+#Step 4: Apply Kubernetes Manifests
+kubectl delete -f k8s/ #it will delete all 
+kubectl apply -f k8s/  #reapply all
+
+
+#Step 6: Check Status
+kubectl get pods  #check status
+kubectl get services
+
+http://localhost:3000/
 

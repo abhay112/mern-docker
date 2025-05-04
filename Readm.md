@@ -37,9 +37,6 @@ kubectl apply -f k8s/ingress.yaml
 1. Verify the Resources
 Check if all the Pods, Services, and Ingress have been created successfully:
 
-bash
-Copy
-Edit
 kubectl get pods
 kubectl get services
 kubectl get ingress
@@ -52,5 +49,16 @@ If you want to access your frontend service locally (on your machine), you can p
 kubectl port-forward service/frontend 8080:80
 
 
+run this before running minikube
+eval $(minikube docker-env)
+
+
+docker build -t frontend:local ./app/frontend
+docker build -t backend:local ./app/backend
+
 kubectl delete -f k8s/ #it will delete all 
 kubectl apply -f k8s/  #reapply all
+
+kubectl get pods  #check status
+
+http://localhost:3000/

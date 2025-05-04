@@ -31,7 +31,7 @@ export default function Record() {
 
       setIsNew(false);
       try {
-        const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5050";
+        const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://192.168.58.2:30050";
         const response = await fetch(`${apiBase}/api/user/${id}`);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const record = await response.json();
@@ -81,7 +81,7 @@ export default function Record() {
 
     try {
       const method = isNew ? "POST" : "PATCH";
-      const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5050";
+      const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://192.168.58.2:30050";
       const url = isNew ? `${apiBase}/api/user` : `${apiBase}/api/user/${id}`;
       const response = await fetch(url, {
         method,

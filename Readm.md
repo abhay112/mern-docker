@@ -65,4 +65,8 @@ kubectl apply -f k8s/ingress.yaml
 
 kubectl get pods  #check status
 
-    http://localhost:3000/
+minikube service frontend --url
+
+    <!-- http://localhost:3000/
+
+http://192.168.58.2:30080/ -->

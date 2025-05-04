@@ -1,9 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+spec:
+  selector:
+    app: mongodb
+  ports:
+    - port: 27017
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: mongodb
@@ -14,25 +23,12 @@ spec:
     spec:
       containers:
         - name: mongodb
-          image: mongo:latest
+          image: mongo:6.0
           ports:
             - containerPort: 27017
           volumeMounts:
-            - name: mongo-data
+            - name: mongo-storage
               mountPath: /data/db
       volumes:
-        - name: mongo-data
+        - name: mongo-storage
           emptyDir: {}
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mongodb
-spec:
-  selector:
-    app: mongodb
-  ports:
-    - port: 27017
-      targetPort: 27017
-  type: ClusterIP

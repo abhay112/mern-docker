@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: backend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: backend
@@ -20,3 +20,16 @@ spec:
           env:
             - name: MONGO_URI
               value: mongodb://mongodb:27017/docker
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 5050
+      targetPort: 5050
+  type: ClusterIP

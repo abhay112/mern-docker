@@ -48,11 +48,14 @@ minikube start
 minikube stop
 minikube delete
 minikube start
+minikube addons enable ingress
 
 
 #run this before running minikube
 #Step 2: Enable Docker to use Minikube’s Docker daemon
-eval $(minikube docker-env)
+<!-- eval $(minikube docker-env) -->
+eval $(minikube docker-env -u)
+
 
 #Step 3: Build Docker Images for Kubernetes
 docker build -t frontend:local ./app/frontend
@@ -66,6 +69,9 @@ kubectl apply -f k8s/  #reapply all
 #Step 6: Check Status
 kubectl get pods  #check status
 kubectl get services
+
+kubectl delete pods --all
+
 
 http://localhost:3000/
 

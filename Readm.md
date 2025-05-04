@@ -5,7 +5,7 @@ docker rm ae0dfd91cc87 10648febda1c 57c1294452ee  removed stopped container
 docker rmi 356d54840c8c ab33e5cf9674 f6a661f83eee       Now remove the images:
  
 docker stop $(docker ps -q)  stop all running container
-docker rm $(docker ps -a -q)  rmove all stop running container
+docker rm -f $(docker ps -a -q)  rmove all stop running container
 
 
 
@@ -23,12 +23,9 @@ minikube delete
 minikube start
 
 
-kubectl apply -f k8s/mongo-deployment.yaml
-kubectl apply -f k8s/mongo-service.yaml
-kubectl apply -f k8s/backend-deployment.yaml
-kubectl apply -f k8s/backend-service.yaml
-kubectl apply -f k8s/frontend-deployment.yaml
-kubectl apply -f k8s/frontend-service.yaml
+kubectl apply -f k8s/mongo.yaml
+kubectl apply -f k8s/backend.yaml
+kubectl apply -f k8s/frontend.yaml
 kubectl apply -f k8s/ingress.yaml
 
 
@@ -59,6 +56,13 @@ docker build -t backend:local ./app/backend
 kubectl delete -f k8s/ #it will delete all 
 kubectl apply -f k8s/  #reapply all
 
+
+kubectl apply -f k8s/mongo.yaml
+kubectl apply -f k8s/backend.yaml
+kubectl apply -f k8s/frontend.yaml
+kubectl apply -f k8s/ingress.yaml
+
+
 kubectl get pods  #check status
 
-http://localhost:3000/
+    http://localhost:3000/

@@ -16,8 +16,9 @@ EXPOSE 3000
 ENV NODE_ENV=production
 
 # API URL for the backend service. while using kubernatese
-# NEXT_PUBLIC_API_URL=http://<your-ip>:30001
 
-ENV NEXT_PUBLIC_API_URL=http://<your-ip>:30001
+ENV NEXT_PUBLIC_API_URL=http://192.168.58.2:30001
+# ENV NEXT_PUBLIC_API_URL=http://<your-ip>:30001
+
 
 CMD ["npm", "start"]

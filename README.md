@@ -1,3 +1,5 @@
+✅ This setup works specifically on Ubuntu and assumes you're using Minikube and Docker locally.
+
 # 🧩 Full-Stack CRUD Assignment with Docker + Kubernetes
 
 This is a full-stack CRUD application with the following tech stack:
@@ -10,55 +12,48 @@ This is a full-stack CRUD application with the following tech stack:
 ---
 
 ## 📁 Project Structure
+app/
+├── frontend/      # Next.js App
+├── backend/       # Express API
+k8s/
+├── mongo.yaml     # MongoDB Deployment & Service
+├── backend.yaml   # Backend Deployment & Service
+├── frontend.yaml  # Frontend Deployment & Service
 
 
 ---
 
-## 🚀 Getting Started (For Beginners)
+### 🚀 Getting Started (For Beginners)
 
 If you don't have Docker or Kubernetes setup — follow the steps below.
 
 ---
 
-## 🔧 Prerequisites
+#### 🔧 Prerequisites
 
 Install the following:
 
-### 1. Docker
+##### 1. Docker
 - Install: [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
 
 
-### 2. Minikube (Kubernetes locally)
+###### 2. Minikube (Kubernetes locally)
 - Install: [https://minikube.sigs.k8s.io/docs/start/](https://minikube.sigs.k8s.io/docs/start/)
 - OR use the `minikube-linux-amd64` binary (already included in project)
 
 
-### 3. Kubectl
+###### 3. Kubectl
 - Install: [https://kubernetes.io/docs/tasks/tools/](https://kubernetes.io/docs/tasks/tools/)
 
 ---
 
-## 🐳 Option 1: Run Using Docker Compose (Without Kubernetes)
+####### 🐳 Option 1: Run Using Docker Compose (Without Kubernetes)
 
 
 
 
-before doing please configure enviorment variablles
-fetch ip using 
-minikube ip
-and then  go to frontend folder and replce .env
-NEXT_PUBLIC_API_URL=http://<your-ip>:30001
-and insde Dockerfile
-replace your ip
-and after that frontend.ymal
-replace 
-env:
-          # Change: Updated API URL to point to the backend service within the Kubernetes cluster.
-          - name: NEXT_PUBLIC_API_URL
-            value: http://192.168.58.2:30001
-            replace
 
-## Step 1: Start Minikube
+# Step 1: Start Minikube
 minikube start
 
 #If needed, restart cleanly:
@@ -73,7 +68,7 @@ eval $(minikube docker-env)
 
 
 
-## Step 3: Configure Environment Variables
+### Step 3: Configure Environment Variables
     Before proceeding with Docker image builds, you need to set the appropriate environment variables, especially the NEXT_PUBLIC_API_URL.
 
 
@@ -100,12 +95,12 @@ eval $(minikube docker-env)
 
 
 
-## Step 4: Build Docker Images for Kubernetes
+#### Step 4: Build Docker Images for Kubernetes
 
 docker build -t frontend:local ./app/frontend
 docker build -t backend:local ./app/backend
 
-## Step 5: Apply Kubernetes Manifests
+##### Step 5: Apply Kubernetes Manifests
 <!-- kubectl delete -f k8s/ #it will delete all 
 kubectl apply -f k8s/  #reapply all -->
 
@@ -115,13 +110,13 @@ kubectl apply -f k8s/frontend.yaml
 
 
 
-## Step 6: Check Status
+###### Step 6: Check Status
 kubectl get pods  
 kubectl get services
 
 kubectl delete pods --all
 
-## Step 7: Get Url
+###### Step 7: Get Url
 minikube service frontend --url
 
 

@@ -35,5 +35,5 @@ spec:
           env:
           # Change: Updated API URL to point to the backend service within the Kubernetes cluster.
           - name: NEXT_PUBLIC_API_URL
-            # value: http://192.168.58.2:30001
-            value: http://<minikube-ip>:30001
+            value: http://192.168.58.2:30001
+            # value: http://<minikube-ip>:30001

@@ -1,5 +1,5 @@
-import Record from '../../components/Record';
+import User from '../../components/User';
 
 export default function CreatePage() {
-  return <Record />;
+  return <User />;
 }

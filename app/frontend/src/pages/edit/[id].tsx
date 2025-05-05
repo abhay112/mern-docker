@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import Record from '../../components/Record';
+import Record from '../../components/User';
 
 export default function EditPage() {
   const router = useRouter();

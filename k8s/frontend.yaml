@@ -7,9 +7,10 @@ spec:
     app: frontend
   type: NodePort
   ports:
-    - port: 3000
+    - protocol: TCP
+      port: 80
       targetPort: 3000
-      nodePort: 30080  
+      nodePort: 30000
 
 ---
 apiVersion: apps/v1
@@ -31,3 +32,8 @@ spec:
           image: frontend:local
           ports:
             - containerPort: 3000
+          env:
+          # Change: Updated API URL to point to the backend service within the Kubernetes cluster.
+          - name: NEXT_PUBLIC_API_URL
+            # value: http://192.168.58.2:30001
+            value: http://<minikube-ip>:30001

@@ -3,13 +3,15 @@ kind: Service
 metadata:
   name: backend
 spec:
-  type: NodePort   # ✅ MUST be NodePort to expose externally
+  type: NodePort
   selector:
     app: backend
   ports:
-    - port: 5050
-      targetPort: 5050
-      nodePort: 30050  # optional, otherwise Kubernetes assigns one
+    - protocol: TCP
+      port: 5050           # Service port
+      targetPort: 5050     # Container port
+      nodePort: 30001      # External port (customizable)
+
 ---
 apiVersion: apps/v1
 kind: Deployment
